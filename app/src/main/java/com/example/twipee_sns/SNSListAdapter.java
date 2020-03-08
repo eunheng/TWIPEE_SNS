@@ -95,6 +95,11 @@ public class SNSListAdapter extends ArrayAdapter<DataModelSNS> implements View.O
         holder.likes.setOnClickListener(this);
         holder.moreContent.setOnClickListener(this);
 
+        //프로필 사진 설정
+        //유저 네임 설정
+        //SNS ImageView 채우기
+
+
         return convertView;
     }
 
