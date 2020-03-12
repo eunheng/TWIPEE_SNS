@@ -23,9 +23,16 @@ import com.example.twipee_sns.DataModel.DataModelSNS;
 import com.example.twipee_sns.DataModel.DataModelUserSetting;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SNSView extends Fragment implements OnUpdateListener, OnLoadListener, View.OnClickListener{
+
+
+    private ArrayList<DataModelSNS> list = new ArrayList<>();
+    private ArrayList<String> category = new ArrayList<>();
+    private ArrayList<DataModelLike> likes = new ArrayList<>();
+    private ArrayList<DataModelComment> comments = new ArrayList<>();
+
+    private DataModelSNS dataModelSNS = new DataModelSNS("type","data_created", "user_id", 10, "content", "image_path", "photo_id", "step", "cost", "period", "traffic", category, likes, comments);
 
     //widget
     private EditText et_feedSearchBox;
@@ -63,33 +70,14 @@ public class SNSView extends Fragment implements OnUpdateListener, OnLoadListene
         tv_favorite.setOnClickListener(this);
         SNSListView = (ElasticListView) view.findViewById(R.id.SNSListView);
 
-
-//        DataModelSNS DMSNS = new DataModelSNS();
-//        DataModelComment DMComment = new DataModelComment();
-//        DataModelLike DMLike = new DataModelLike();
-//        ArrayList<DataModelSNS> mDMSNS = new ArrayList<>();
-//        List<DataModelComment> comments = new ArrayList<>();
-//        List<DataModelLike> likes = new ArrayList<>();
-//        DMComment.setComment("comment");
-//        DMComment.setDate_created("20200301");
-//        DMComment.setUser_id("eunheng");
-//        DMLike.setUser_id("som");
-//        likes.add(DMLike);
-//        DMComment.setLikes(likes);
-//        comments.add(DMComment);
-//        DMSNS.setContent("dummy");
-//        DMSNS.setCost("100만원");
-//        DMSNS.setData_created("20200220");
-//        DMSNS.setImage_path("http://tong.visitkorea.or.kr/cms/resource/16/2373216_image2_1.jpg");
-//        DMSNS.setLikes(likes);
-//        mDMSNS.add(DMSNS);
-
         initListViewRefresh();
 
         return view;
     }
 
     private void initListViewRefresh(){
+        list.add(dataModelSNS);
+        list.add(dataModelSNS);
         SNSListView.setHorizontalFadingEdgeEnabled(true);
         SNSListView.setAdapter(adapter);
         SNSListView.enableLoadFooter(true)
