@@ -12,24 +12,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.eschao.android.widget.elasticlistview.ElasticListView;
-import com.eschao.android.widget.elasticlistview.LoadFooter;
-import com.eschao.android.widget.elasticlistview.OnLoadListener;
-import com.eschao.android.widget.elasticlistview.OnUpdateListener;
+import com.example.twipee_sns.DataModel.DataModelComment;
+import com.example.twipee_sns.DataModel.DataModelLike;
+import com.example.twipee_sns.DataModel.DataModelSNS;
 import com.example.twipee_sns.DataModel.DataModelUserSetting;
 
 import java.util.ArrayList;
 
-public class SNSView extends Fragment implements OnUpdateListener, OnLoadListener, View.OnClickListener{
+public class SNSView extends Fragment implements View.OnClickListener{
+
+
+    private ArrayList<DataModelSNS> list = new ArrayList<>();
+    private ArrayList<String> category = new ArrayList<>();
+    private ArrayList<DataModelLike> likes = new ArrayList<>();
+    private ArrayList<DataModelComment> comments = new ArrayList<>();
+
+    private DataModelSNS dataModelSNS = new DataModelSNS("type","data_created", "user_id", "10", "content", "image_path", "photo_id", "step", "cost", "period", "traffic", category, likes, comments);
 
     //widget
     private EditText et_feedSearchBox;
     private Button btn_feedSearch;
     private TextView tv_favorite;
-    private ElasticListView SNSListView;
+    private RecyclerView recyclerView;
 
-    private SNSListAdapter adapter;
+    private SNSRecyclerAdapter adapter;
     private Intent intent;
     private int resultsCount = 0;
     private ArrayList<DataModelUserSetting> DMUserSetting;
@@ -37,17 +46,6 @@ public class SNSView extends Fragment implements OnUpdateListener, OnLoadListene
     public SNSView() {
         // Required empty public constructor
     }
-
-    @Override
-    public void onLoad() {
-
-    }
-
-    @Override
-    public void onUpdate() {
-
-    }
-
 
     @Nullable
     @Override
@@ -57,18 +55,21 @@ public class SNSView extends Fragment implements OnUpdateListener, OnLoadListene
         tv_favorite = (TextView) view.findViewById(R.id.tv_favorite);
         btn_feedSearch.setOnClickListener(this);
         tv_favorite.setOnClickListener(this);
-        SNSListView = (ElasticListView) view.findViewById(R.id.SNSListView);
-        initListViewRefresh();
+        recyclerView = (RecyclerView) view.findViewById(R.id.SNSListView);
+
+        initRecyclerViewRefresh();
+
 
         return view;
     }
 
-    private void initListViewRefresh(){
-        SNSListView.setHorizontalFadingEdgeEnabled(true);
-        SNSListView.setAdapter(adapter);
-        SNSListView.enableLoadFooter(true)
-                .getLoadFooter().setLoadAction(LoadFooter.LoadAction.RELEASE_TO_LOAD);
-        SNSListView.setOnUpdateListener(this).setOnLoadListener(this);
+    private void initRecyclerViewRefresh() {
+        list.add(dataModelSNS);
+        list.add(dataModelSNS);
+        recyclerView.setHasFixedSize(true);
+        adapter = new SNSRecyclerAdapter(getActivity(), list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

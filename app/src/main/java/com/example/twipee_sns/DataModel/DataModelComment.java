@@ -4,6 +4,14 @@ import java.util.List;
 
 public class DataModelComment {
     private String comment;
+
+    public DataModelComment(String comment, String user_id, List<DataModelLike> likes, String date_created) {
+        this.comment = comment;
+        this.user_id = user_id;
+        this.likes = likes;
+        this.date_created = date_created;
+    }
+
     private String user_id;
     private List<DataModelLike> likes;
     private String date_created;

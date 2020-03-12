@@ -5,15 +5,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.twipee_sns.DataModel.DataModelComment;
+import com.example.twipee_sns.DataModel.DataModelLike;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ArrayList<DataModelComment> list = new ArrayList<>();
+    private ArrayList<DataModelLike> likes = new ArrayList<>();
+    private DataModelComment dataModelComment = new DataModelComment("comment","user_id",likes,"date_created");
 
     //widget
     private CircleImageView iv_profile_photo;
@@ -21,9 +31,9 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
     private EditText et_addComment;
     private Button btn_addComment;
     private TextView tv_title, tv_done;
-    private ListView CommentListView;
+    private RecyclerView CommentRecyclerView;
 
-    private CommentListAdapter adapter;
+    private CommentRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,16 +45,32 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
     private void initView() {
         iv_back = (ImageView) findViewById(R.id.backArrow);
         tv_title = (TextView) findViewById(R.id.setTitle);
+        tv_title.setText(getString(R.string.comment_activity));
         tv_done = (TextView) findViewById(R.id.tvDone);
         tv_done.setVisibility(View.GONE);
-        CommentListView = (ListView) findViewById(R.id.CommentListView);
+        CommentRecyclerView = (RecyclerView) findViewById(R.id.CommentRecyclerView);
         iv_profile_photo = (CircleImageView) findViewById(R.id.iv_profile_photo);
         et_addComment = (EditText) findViewById(R.id.et_addComment);
         btn_addComment = (Button) findViewById(R.id.btn_addComment);
-        CommentListView.setAdapter(adapter);
+        initRecyclerViewRefresh();
 
         iv_back.setOnClickListener(this);
         btn_addComment.setOnClickListener(this);
+    }
+
+    private void initRecyclerViewRefresh() {
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        list.add(dataModelComment);
+        CommentRecyclerView.setHasFixedSize(true);
+        adapter = new CommentRecyclerAdapter(this, list);
+        CommentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        CommentRecyclerView.setAdapter(adapter);
     }
 
     @Override

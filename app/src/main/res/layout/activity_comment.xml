@@ -10,15 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/CommentListView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/CommentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@null"
+            android:cacheColorHint="#00000000"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:fadingEdge="none"
+            android:divider="@null"
+            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toTopOf="@+id/bar_comment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ListView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
             android:id="@+id/bar_comment"
@@ -37,7 +46,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/bar_userInfo">
+                android:id="@+id/bar_userInfo"
+                android:background="@color/white">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="30dp"

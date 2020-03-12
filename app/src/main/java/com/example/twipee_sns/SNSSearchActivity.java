@@ -23,6 +23,7 @@ public class SNSSearchActivity extends AppCompatActivity implements View.OnClick
     private void initView() {
         iv_back = (ImageView) findViewById(R.id.backArrow);
         tv_title = (TextView) findViewById(R.id.setTitle);
+        tv_title.setText(getText(R.string.search_activity));
         tv_done = (TextView) findViewById(R.id.tvDone);
         iv_back.setOnClickListener(this);
         tv_done.setOnClickListener(this);

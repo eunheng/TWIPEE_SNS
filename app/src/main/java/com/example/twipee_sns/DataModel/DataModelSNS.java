@@ -1,5 +1,6 @@
 package com.example.twipee_sns.DataModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataModelSNS {
@@ -7,7 +8,8 @@ public class DataModelSNS {
     private String data_created;
     private String user_id;
 
-    private int people;
+    //int형 말고 String으로
+    private String people;
     private String content;
     private String image_path;
     private String photo_id;
@@ -15,19 +17,19 @@ public class DataModelSNS {
     private String cost;
     private String period;
     private String traffic;
-    private List<String> category;
+    private ArrayList<String> category;
 
-    private List<DataModelLike> likes;
-    private List<DataModelComment> comments;
+    private ArrayList<DataModelLike> likes;
+    private ArrayList<DataModelComment> comments;
 
     public DataModelSNS() {
         //super();
     }
 
-    public DataModelSNS(String type, String data_created, String user_id, int people,
+    public DataModelSNS(String type, String data_created, String user_id, String people,
                         String content, String image_path, String photo_id, String step,
-                        String cost, String period, String traffic, List<String> category,
-                        List<DataModelLike> likes, List<DataModelComment> comments) {
+                        String cost, String period, String traffic, ArrayList<String> category,
+                        ArrayList<DataModelLike> likes, ArrayList<DataModelComment> comments) {
         this.type = type;
         this.data_created = data_created;
         this.user_id = user_id;
@@ -68,11 +70,11 @@ public class DataModelSNS {
         this.user_id = user_id;
     }
 
-    public int getPeople() {
+    public String getPeople() {
         return people;
     }
 
-    public void setPeople(int people) {
+    public void setPeople(String people) {
         this.people = people;
     }
 
@@ -136,7 +138,7 @@ public class DataModelSNS {
         return category;
     }
 
-    public void setCategory(List<String> category) {
+    public void setCategory(ArrayList<String> category) {
         this.category = category;
     }
 
@@ -144,7 +146,7 @@ public class DataModelSNS {
         return likes;
     }
 
-    public void setLikes(List<DataModelLike> likes) {
+    public void setLikes(ArrayList<DataModelLike> likes) {
         this.likes = likes;
     }
 
@@ -152,7 +154,7 @@ public class DataModelSNS {
         return comments;
     }
 
-    public void setComments(List<DataModelComment> comments) {
+    public void setComments(ArrayList<DataModelComment> comments) {
         this.comments = comments;
     }
 
