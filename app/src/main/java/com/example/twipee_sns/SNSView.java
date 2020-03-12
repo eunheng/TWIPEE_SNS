@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.twipee_sns.DataModel.DataModelComment;
 import com.example.twipee_sns.DataModel.DataModelLike;
 import com.example.twipee_sns.DataModel.DataModelSNS;
+import com.example.twipee_sns.DataModel.DataModelComment;
+import com.example.twipee_sns.DataModel.DataModelLike;
+import com.example.twipee_sns.DataModel.DataModelSNS;
 import com.example.twipee_sns.DataModel.DataModelUserSetting;
 
 import java.util.ArrayList;
